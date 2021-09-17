@@ -29,7 +29,7 @@ prep_data <- function(x, ...) {
   ## identify numbered ID strings
   id_vars <- grep("_id$", names(x))
   id_vars <- id_vars[vapply(x[, id_vars],
-    function(.x) all(grepl("^\\d+$", .x)), logical(1))]
+    function(.x) all(grepl("^\\d+$", .x) | is.na(.x)), logical(1))]
 
   ## coerce IDs to be strings
   for (i in id_vars) {
